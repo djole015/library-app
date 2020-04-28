@@ -1,0 +1,59 @@
+<div ng-controller="booksCtrl">
+							
+		<form id="addBook">
+
+			<div class="form-group">
+				<label for="title">Title</label>
+				<input id="title" class="form-control" ng-model="newBook.title"/>
+			</div>
+			
+			<div class="form-group">
+				<label for="publisher">Publisher</label>
+				<select id="publisher" class="form-control" ng-model="newBook.publisherId">
+					<option ng-repeat="p in publishers" value="{{p.id}}">{{p.name}}</option>
+				</select>
+			</div>
+			
+			<button class="btn btn-primary" ng-click="doAdd()">Add</button>
+			
+		</form>
+		
+		<form id="search">
+			
+			<div class="form-group">
+				<label for="title">Title</label>
+				<input id="title" class="form-control" ng-model="searchParams.title"/>
+			</div>
+			
+			<button class="btn btn-primary" ng-click="doSearch()">Search</button>
+			
+		</form>
+			
+		
+		<div class="col-12">
+			<div style="margin-bottom:10px" class="btn-group float-right">
+				<button ng-disabled="pageNum==0" ng-click="changePage(-1)" class="btn btn-primary">Previous</button>
+				<button ng-disabled="pageNum==totalPages - 1" ng-click="changePage(1)" class="btn btn-primary">Next</button>
+			</div>
+		</div>
+	
+		<table class="table table-bordered table-striped">
+			<thead class="thead-dark">
+				<tr>
+					<th>Book Title</th>
+					<th>Publisher</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="b in books">
+					<td>{{b.title}}</td>
+					<td>{{b.publisherName}}</td>
+					<td>
+						<button class="btn btn-danger" ng-click="doDelete(b.id)">Delete</button>
+						<button class="btn btn-warning" ng-click="goToEdit(b.id)">Edit</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+</div>
