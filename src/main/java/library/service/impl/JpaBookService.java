@@ -1,5 +1,7 @@
 package library.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -43,6 +45,11 @@ public class JpaBookService implements BookService {
 	@Override
 	public Page<Book> search(String naziv, String writer, Integer minVotesCount, int pageNum) {
 		return bookRepository.search(naziv, writer, minVotesCount, new PageRequest(pageNum, 5));
+	}
+
+	@Override
+	public List<Book> findByPublisherId(Long publisherId) {
+		return bookRepository. findByPublisherId(publisherId);
 	}
 
 }

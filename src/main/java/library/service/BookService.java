@@ -1,5 +1,7 @@
 package library.service;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 
 import library.model.Book;
@@ -15,5 +17,7 @@ public interface BookService {
 	Book delete(Long id);
 
 	Page<Book> search(String naziv, String writer, Integer minVotesCount, int pageNum);
+
+	List<Book> findByPublisherId(Long publisherId);
 
 }

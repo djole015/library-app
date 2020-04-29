@@ -10,9 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import library.model.Book;
 import library.model.Publisher;
+import library.service.BookService;
 import library.service.PublisherService;
+import library.support.BookToBookDTO;
 import library.support.PublisherToPublisherDTO;
+import library.web.dto.BookDTO;
 import library.web.dto.PublisherDTO;
 
 @RestController
@@ -20,9 +24,12 @@ import library.web.dto.PublisherDTO;
 public class ApiPublisherController {
 	@Autowired
 	private PublisherService publisherService;
-
+	@Autowired
+	private BookService bookService;
 	@Autowired
 	private PublisherToPublisherDTO toDTO;
+	@Autowired
+	private BookToBookDTO toBookDTO;
 
 	@RequestMapping(method = RequestMethod.GET)
 	ResponseEntity<List<PublisherDTO>> getPublishers() {
@@ -44,6 +51,18 @@ public class ApiPublisherController {
 		}
 
 		return new ResponseEntity<>(toDTO.convert(publisher), HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/{publisherId}/books", method = RequestMethod.GET)
+	public ResponseEntity<List<BookDTO>> getBooks(@PathVariable Long publisherId) {
+
+		List<Book> books = bookService.findByPublisherId(publisherId);
+
+		if (books == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+
+		return new ResponseEntity<>(toBookDTO.convert(books), HttpStatus.OK);
 	}
 
 }
