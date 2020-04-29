@@ -28,6 +28,9 @@ public class PublisherDTOToPublisher implements Converter<PublisherDTO, Publishe
 		}
 
 		publisher.setName(dto.getName());
+		publisher.setAddress(dto.getAddress());
+		publisher.setPhone(dto.getPhone());
+		
 		return publisher;
 	}
 	

@@ -16,6 +16,14 @@ public class Book {
 	private Long id;
 	@Column(nullable = false)
 	private String title;
+	@Column(nullable = false)
+	private Integer edition;
+	@Column(nullable = false)
+	private String writer;
+	@Column(nullable = false, unique = true)
+	private String isbn;
+	@Column
+	private Integer votesCount = 0;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Publisher publisher;
@@ -34,6 +42,38 @@ public class Book {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public Integer getEdition() {
+		return edition;
+	}
+
+	public void setEdition(Integer edition) {
+		this.edition = edition;
+	}
+
+	public String getWriter() {
+		return writer;
+	}
+
+	public void setWriter(String writer) {
+		this.writer = writer;
+	}
+
+	public String getIsbn() {
+		return isbn;
+	}
+
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
+	}
+
+	public Integer getVotesCount() {
+		return votesCount;
+	}
+
+	public void setVotesCount(Integer votesCount) {
+		this.votesCount = votesCount;
 	}
 
 	public Publisher getPublisher() {

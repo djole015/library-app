@@ -8,13 +8,28 @@
 
 			<div class="form-group">
 				<label for="title">Book title</label>
-				<input id="title" class="form-control" ng-model="book.title"/>
+				<input id="title" class="form-control" ng-model="oldBook.title"/>
+			</div>
+			
+			<div class="form-group">
+				<label for="edition">Edition</label>
+				<input id="edition" class="form-control" ng-model="oldBook.edition"/>
+			</div>
+			
+			<div class="form-group">
+				<label for="writer">Author</label>
+				<input id="writer" class="form-control" ng-model="oldBook.writer"/>
+			</div>
+			
+			<div class="form-group">
+				<label for="isbn">ISBN</label>
+				<input id="isbn" class="form-control" ng-model="oldBook.isbn"/>
 			</div>
 		
 			<div class="form-group">
 				<label for="publisher">Publisher</label>
-				<select id="publisher" class="form-control" ng-model="book.publisherId">
-					<option ng-repeat="p in publishers" ng-selected="p.id == book.publisherId" value="{{p.id}}">{{p.name}}</option>
+				<select id="publisher" class="form-control" ng-model="oldBook.publisherId">
+					<option ng-repeat="p in publishers" ng-selected="p.id == oldBook.publisherId" value="{{p.id}}">{{p.name}}</option>
 				</select>
 			</div>
 							

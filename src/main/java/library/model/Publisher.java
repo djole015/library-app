@@ -20,6 +20,10 @@ public class Publisher {
 	private Long id;
 	@Column(unique = true, nullable = false)
 	private String name;
+	@Column
+	private String address;
+	@Column
+	private String phone;
 
 	@OneToMany(mappedBy = "publisher", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Book> books = new ArrayList<>();
@@ -40,6 +44,22 @@ public class Publisher {
 		this.name = name;
 	}
 
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
 	public List<Book> getBooks() {
 		return books;
 	}
@@ -53,7 +73,6 @@ public class Publisher {
 
 		if (!this.equals(book.getPublisher())) {
 			book.setPublisher(this);
-			;
 		}
 	}
 }

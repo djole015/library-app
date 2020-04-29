@@ -38,13 +38,15 @@ public class ApiBookController {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	ResponseEntity<List<BookDTO>> getBooks(
-			@RequestParam(required = false) String title, 
+			@RequestParam(required = false) String title,
+			@RequestParam(required = false) String writer,
+			@RequestParam(required = false) Integer minVotesCount,
 			@RequestParam(value = "pageNum", defaultValue = "0") int pageNum) {
 
 		Page<Book> booksPage;
 
 		if (title != null ) {
-			booksPage = bookService.search(title, pageNum);
+			booksPage = bookService.search(title, writer, minVotesCount, pageNum);
 		} else {
 			booksPage = bookService.findAll(pageNum);
 		}

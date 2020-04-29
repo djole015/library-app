@@ -41,8 +41,8 @@ public class JpaBookService implements BookService {
 	}
 
 	@Override
-	public Page<Book> search(String naziv, int pageNum) {
-		return bookRepository.search(naziv, new PageRequest(pageNum, 5));
+	public Page<Book> search(String naziv, String writer, Integer minVotesCount, int pageNum) {
+		return bookRepository.search(naziv, writer, minVotesCount, new PageRequest(pageNum, 5));
 	}
 
 }

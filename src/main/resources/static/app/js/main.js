@@ -11,11 +11,16 @@ libraryApp.controller("booksCtrl", function($scope, $http, $location){
 
 	$scope.newBook = {};
 	$scope.newBook.title = "";
+	$scope.newBook.edition = "";
+	$scope.newBook.writer = "";
+	$scope.newBook.isbn = "";
 
 	$scope.newBook.publisherId = "";
 	
 	$scope.searchParams = {};
 	$scope.searchParams.title = "";
+	$scope.searchParams.writer = "";
+	$scope.searchParams.minVotesCount = "";
 	
 	$scope.pageNum = 0;
 	$scope.totalPages = 1;
@@ -29,6 +34,14 @@ libraryApp.controller("booksCtrl", function($scope, $http, $location){
 		
 		if($scope.searchParams.title != ""){
 			config.params.title = $scope.searchParams.title;
+		}
+		
+		if($scope.searchParams.writer != ""){
+			config.params.writer = $scope.searchParams.writer;
+		}
+		
+		if($scope.searchParams.minVotesCount != ""){
+			config.params.minVotesCount = $scope.searchParams.minVotesCount;
 		}
 		
 		config.params.pageNum = $scope.pageNum;
@@ -65,6 +78,9 @@ libraryApp.controller("booksCtrl", function($scope, $http, $location){
 				getBooks();
 				
 				$scope.newBook.title = "";
+				$scope.newBook.edition = "";
+				$scope.newBook.writer = "";
+				$scope.newBook.isbn = "";
 
 				$scope.newBook.publisherId = "";
 			},
@@ -86,7 +102,7 @@ libraryApp.controller("booksCtrl", function($scope, $http, $location){
 	}
 	
 	$scope.goToEdit = function(id){
-		$location.path("/edit/" + id);
+		$location.path("/books/edit/" + id);
 	}
 	
 	$scope.doSearch = function(){
@@ -94,6 +110,8 @@ libraryApp.controller("booksCtrl", function($scope, $http, $location){
 		getBooks();
 		
 		$scope.searchParams.title = "";
+		$scope.searchParams.writer = "";
+		$scope.searchParams.minVotesCount = "";
 	}
 	
 	$scope.changePage = function(direction){
@@ -105,15 +123,18 @@ libraryApp.controller("booksCtrl", function($scope, $http, $location){
 
 libraryApp.controller("editBookCtrl", function($scope, $http, $routeParams, $location){
 	
-	var bookUrl = "/api/books/" + $routeParams.id;
+	var oldBookUrl = "/api/books/" + $routeParams.id;
 	var publishersUrl = "/api/publishers";
 
 	$scope.publishers = [];
 	
-	$scope.book = {};
-	$scope.book.title = "";
+	$scope.oldBook = {};
+	$scope.oldBook.title = "";
+	$scope.oldBook.edition = "";
+	$scope.oldBook.writer = "";
+	$scope.oldBook.publisher = "";
 
-	$scope.book.publisherId = "";
+	$scope.oldBook.publisherId = "";
 	
 	var getPublisher = function(){
 		$http.get(publishersUrl).then(
@@ -128,9 +149,9 @@ libraryApp.controller("editBookCtrl", function($scope, $http, $routeParams, $loc
 	}
 	
 	var getBook = function(){
-		$http.get(bookUrl).then(
+		$http.get(oldBookUrl).then(
 			function success(res){
-				$scope.book = res.data;
+				$scope.oldBook = res.data;
 			},
 			function error(){
 				alert("Failure getting books.");
@@ -141,9 +162,9 @@ libraryApp.controller("editBookCtrl", function($scope, $http, $routeParams, $loc
 	getPublisher();
 
 	$scope.doEdit = function(){
-		$http.put(bookUrl, $scope.book).then(
+		$http.put(oldBookUrl, $scope.oldBook).then(
 			function success(){
-				$location.path("/");
+				$location.path("/books");
 			},
 			function error(){
 				alert("Failed to save the book.");

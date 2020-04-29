@@ -18,6 +18,10 @@ public class BookToBookDTO implements Converter<Book, BookDTO>{
 
 		dto.setId(source.getId());
 		dto.setTitle(source.getTitle());
+		dto.setEdition(source.getEdition());
+		dto.setWriter(source.getWriter());
+		dto.setIsbn(source.getIsbn());
+		dto.setVotesCount(source.getVotesCount());
 
 		dto.setPublisherId(source.getPublisher().getId());
 		dto.setPublisherName(source.getPublisher().getName());

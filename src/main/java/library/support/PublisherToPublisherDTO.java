@@ -18,6 +18,8 @@ public class PublisherToPublisherDTO implements Converter<Publisher, PublisherDT
 
 		dto.setId(source.getId());
 		dto.setName(source.getName());
+		dto.setAddress(source.getAddress());
+		dto.setPhone(source.getPhone());
 
 		return dto;
 	}

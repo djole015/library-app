@@ -14,6 +14,6 @@ public interface BookService {
 
 	Book delete(Long id);
 
-	Page<Book> search(String title, int pageNum);
+	Page<Book> search(String naziv, String writer, Integer minVotesCount, int pageNum);
 
 }

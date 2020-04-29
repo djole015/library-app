@@ -1,5 +1,8 @@
 package library.web.dto;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Size;
+
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class BookDTO {
@@ -7,6 +10,12 @@ public class BookDTO {
 	private Long id;
 	@NotEmpty
 	private String title;
+	@Max(9999)
+	private Integer edition;
+	private String writer;
+	@Size(max = 18)
+	private String isbn;
+	private Integer votesCount = 0;
 
 	private Long publisherId;
 	private String publisherName;
@@ -25,6 +34,38 @@ public class BookDTO {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public Integer getEdition() {
+		return edition;
+	}
+
+	public void setEdition(Integer edition) {
+		this.edition = edition;
+	}
+
+	public String getWriter() {
+		return writer;
+	}
+
+	public void setWriter(String writer) {
+		this.writer = writer;
+	}
+
+	public String getIsbn() {
+		return isbn;
+	}
+
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
+	}
+
+	public Integer getVotesCount() {
+		return votesCount;
+	}
+
+	public void setVotesCount(Integer votesCount) {
+		this.votesCount = votesCount;
 	}
 
 	public Long getPublisherId() {
