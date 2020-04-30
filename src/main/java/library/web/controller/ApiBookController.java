@@ -97,6 +97,14 @@ public class ApiBookController {
 
 		return new ResponseEntity<>(toDTO.convert(persisted), HttpStatus.OK);
 	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/{id}")
+	public ResponseEntity<BookDTO> vote(@PathVariable Long id) {
+
+		Book savedBook = bookService.vote(id);
+
+		return new ResponseEntity<>(toDTO.convert(savedBook), HttpStatus.OK);
+	}
 
 	@ExceptionHandler(value = DataIntegrityViolationException.class)
 	public ResponseEntity<Void> handle() {

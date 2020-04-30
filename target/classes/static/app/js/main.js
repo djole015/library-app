@@ -105,6 +105,17 @@ libraryApp.controller("booksCtrl", function($scope, $http, $location){
 		$location.path("/books/edit/" + id);
 	}
 	
+	$scope.doVote = function(id){
+		$http.post(booksUrl + "/" + id).then(
+			function success(){
+				getBooks();
+			},
+			function error(){
+				alert("Failed to vote.");
+			}
+		);
+	}
+	
 	$scope.doSearch = function(){
 		$scope.pageNum = 0;
 		getBooks();

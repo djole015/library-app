@@ -17,7 +17,7 @@ public interface BookRepository extends JpaRepository<Book, Long>{
 	@Query("SELECT b FROM Book b WHERE "
 			+ "(:title IS NULL OR b.title = :title) AND "
 			+ "(:writer IS NULL OR b.writer = :writer) AND "
-			+ "(b.votesCount >= :minVotesCount)"
+			+ "(:minVotesCount IS NULL OR b.votesCount >= :minVotesCount)"
 			)
 	Page<Book> search(
 			@Param("title") String title, 
