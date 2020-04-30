@@ -87,4 +87,15 @@ public class JpaBookService implements BookService {
 		return book;
 	}
 
+	@Override
+	public Book reserve(Long id) {
+		Book book = bookRepository.findOne(id);
+		if(book.getBookCount() != 0) {
+		book.setBookCount(book.getBookCount() - 1);
+		bookRepository.save(book);
+		}
+		
+		return book;
+	}
+
 }

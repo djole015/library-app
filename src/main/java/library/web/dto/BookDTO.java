@@ -17,6 +17,7 @@ public class BookDTO {
 	private String writer;
 	@Size(max = 18)
 	private String isbn;
+	@Min(0)
 	private Integer bookCount;
 	private Integer votesCount = 0;
 

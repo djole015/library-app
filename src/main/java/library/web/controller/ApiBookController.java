@@ -98,10 +98,18 @@ public class ApiBookController {
 		return new ResponseEntity<>(toDTO.convert(persisted), HttpStatus.OK);
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, value = "/{id}")
+	@RequestMapping(method = RequestMethod.POST, value = "votes/{id}")
 	public ResponseEntity<BookDTO> vote(@PathVariable Long id) {
 
 		Book savedBook = bookService.vote(id);
+
+		return new ResponseEntity<>(toDTO.convert(savedBook), HttpStatus.OK);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "count/{id}")
+	public ResponseEntity<BookDTO> reserve(@PathVariable Long id) {
+
+		Book savedBook = bookService.reserve(id);
 
 		return new ResponseEntity<>(toDTO.convert(savedBook), HttpStatus.OK);
 	}

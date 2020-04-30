@@ -123,8 +123,21 @@ libraryApp.controller("booksCtrl", function($scope, $http, $location){
 		$location.path("/books/edit/" + id);
 	}
 	
+	$scope.doReserve = function(id){
+		$http.post(booksUrl + "/count/" + id).then(
+			function success(){
+				alert("Book reserved succesfuly.")
+				getBooks();
+			},
+			function error(){
+				alert("Failed to make reservation.");
+				getBooks();
+			}
+		);
+	}
+	
 	$scope.doVote = function(id){
-		$http.post(booksUrl + "/" + id).then(
+		$http.post(booksUrl + "/votes/" + id).then(
 			function success(){
 				getBooks();
 				getHighestVotedBook();

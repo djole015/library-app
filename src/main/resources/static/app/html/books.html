@@ -98,7 +98,7 @@
 					<td>
 						<button class="btn btn-danger" ng-click="doDelete(b.id)">Delete</button>
 						<button class="btn btn-warning" ng-click="goToEdit(b.id)">Edit</button>
-						<button class="btn btn-primary" ng-click="doReserve(b.id)">Reserve</button>
+						<button class="btn btn-primary" ng-disabled="b.bookCount==0" ng-click="doReserve(b.id)">Reserve</button>
 						<button class="btn btn-secondary" ng-click="doVote(b.id)">Vote</button>
 					</td>
 				</tr>
