@@ -1,6 +1,7 @@
 package library.web.dto;
 
 import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -10,6 +11,7 @@ public class BookDTO {
 	private Long id;
 	@NotEmpty
 	private String title;
+	@Min(0)
 	@Max(9999)
 	private Integer edition;
 	private String writer;

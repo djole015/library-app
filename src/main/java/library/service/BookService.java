@@ -18,8 +18,10 @@ public interface BookService {
 	
 	Book vote(Long id);
 
-	Page<Book> search(String naziv, String writer, Integer minVotesCount, int pageNum);
+	Page<Book> search(String title, String writer, Integer minVotesCount, int pageNum);
 
 	List<Book> findByPublisherId(Long publisherId);
+	
+	Book findHighestVotedBook();
 
 }

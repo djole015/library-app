@@ -22,6 +22,8 @@ libraryApp.controller("booksCtrl", function($scope, $http, $location){
 	$scope.searchParams.writer = "";
 	$scope.searchParams.minVotesCount = "";
 	
+	$scope.highestVotedBook = {};
+	
 	$scope.pageNum = 0;
 	$scope.totalPages = 1;
 	
@@ -51,6 +53,7 @@ libraryApp.controller("booksCtrl", function($scope, $http, $location){
 				$scope.books = res.data;
 				$scope.totalPages = res.headers("totalPages");
 				getPublishers();
+				
 			},
 			function error(){
 				alert("Failure getting books.");
@@ -70,6 +73,19 @@ libraryApp.controller("booksCtrl", function($scope, $http, $location){
 	}
 	
 	getBooks();
+	
+	var getHighestVotedBook = function(){
+		$http.get(booksUrl + "/votes").then(
+			function success(res){
+				$scope.highestVotedBook = res.data;
+			},
+			function error(){
+				alert("Failed to find the book.");
+			}
+		);
+	}
+	
+	getHighestVotedBook();
 	
 	$scope.doAdd = function(){
 		
@@ -109,6 +125,7 @@ libraryApp.controller("booksCtrl", function($scope, $http, $location){
 		$http.post(booksUrl + "/" + id).then(
 			function success(){
 				getBooks();
+				getHighestVotedBook();
 			},
 			function error(){
 				alert("Failed to vote.");

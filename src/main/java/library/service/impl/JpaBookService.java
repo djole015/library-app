@@ -56,7 +56,7 @@ public class JpaBookService implements BookService {
 
 	@Override
 	public List<Book> findByPublisherId(Long publisherId) {
-		return bookRepository. findByPublisherId(publisherId);
+		return bookRepository.findByPublisherId(publisherId);
 	}
 
 	@Override
@@ -67,6 +67,21 @@ public class JpaBookService implements BookService {
 		if (book != null) {
 		book.setVotesCount(book.getVotesCount()+1);
 		bookRepository.save(book);
+		}
+		
+		return book;
+	}
+	
+	@Override
+	public Book findHighestVotedBook() {
+		List<Book> books = bookRepository.findAll();
+		
+		Book book = books.get(0);
+		
+		for(Book b : books) {
+			if(b.getVotesCount()>=book.getVotesCount()) {
+				book = b;
+			}
 		}
 		
 		return book;

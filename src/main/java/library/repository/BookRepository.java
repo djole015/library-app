@@ -15,8 +15,8 @@ import library.model.Book;
 public interface BookRepository extends JpaRepository<Book, Long>{
 
 	@Query("SELECT b FROM Book b WHERE "
-			+ "(:title IS NULL OR b.title = :title) AND "
-			+ "(:writer IS NULL OR b.writer = :writer) AND "
+			+ "(:title IS NULL OR b.title LIKE :title) AND "
+			+ "(:writer IS NULL OR b.writer LIKE :writer) AND "
 			+ "(:minVotesCount IS NULL OR b.votesCount >= :minVotesCount)"
 			)
 	Page<Book> search(

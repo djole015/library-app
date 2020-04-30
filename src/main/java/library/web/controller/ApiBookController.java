@@ -45,7 +45,7 @@ public class ApiBookController {
 
 		Page<Book> booksPage;
 
-		if (title != null ) {
+		if (title != null || writer != null || minVotesCount != null) {
 			booksPage = bookService.search(title, writer, minVotesCount, pageNum);
 		} else {
 			booksPage = bookService.findAll(pageNum);
@@ -104,6 +104,15 @@ public class ApiBookController {
 		Book savedBook = bookService.vote(id);
 
 		return new ResponseEntity<>(toDTO.convert(savedBook), HttpStatus.OK);
+	}
+	
+
+	@RequestMapping(value="/votes", method = RequestMethod.GET)
+	ResponseEntity<BookDTO> getHighestVotedBook() {
+		
+		Book book = bookService.findHighestVotedBook();
+		
+		return new ResponseEntity<>(toDTO.convert(book), HttpStatus.OK);
 	}
 
 	@ExceptionHandler(value = DataIntegrityViolationException.class)
