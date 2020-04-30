@@ -23,6 +23,11 @@
 			</div>
 			
 			<div class="form-group">
+				<label for="bookCount">Books Count</label>
+				<input id="bookCount" class="form-control" ng-model="newBook.bookCount"/>
+			</div>
+			
+			<div class="form-group">
 				<label for="publisher">Publisher</label>
 				<select id="publisher" class="form-control" ng-model="newBook.publisherId">
 					<option ng-repeat="p in publishers" value="{{p.id}}">{{p.name}}</option>
@@ -76,6 +81,7 @@
 					<th>Book Title</th>
 					<th>Edition</th>
 					<th>Author</th>
+					<th>Books Count</th>
 					<th>Votes Count</th>
 					<th>Publisher</th>
 					<th>Actions</th>
@@ -86,12 +92,14 @@
 					<td>{{b.title}}</td>
 					<td>{{b.edition}}</td>
 					<td>{{b.writer}}</td>
+					<td>{{b.bookCount}}</td>
 					<td>{{b.votesCount}}</td>
 					<td>{{b.publisherName}}</td>
 					<td>
 						<button class="btn btn-danger" ng-click="doDelete(b.id)">Delete</button>
 						<button class="btn btn-warning" ng-click="goToEdit(b.id)">Edit</button>
-						<button class="btn btn-primary" ng-click="doVote(b.id)">Vote</button>
+						<button class="btn btn-primary" ng-click="doReserve(b.id)">Reserve</button>
+						<button class="btn btn-secondary" ng-click="doVote(b.id)">Vote</button>
 					</td>
 				</tr>
 			</tbody>

@@ -31,6 +31,7 @@ public class TestData {
 		immortality.setEdition(1990);
 		immortality.setWriter("Milan Kundera");
 		immortality.setIsbn("978-86-521-2679-8");
+		immortality.setBookCount(5);
 		immortality.setPublisher(laguna);
 		bookService.save(immortality);
 		
@@ -51,6 +52,7 @@ public class TestData {
 		m2multiverzum.setEdition(2018);
 		m2multiverzum.setWriter("Ivan Tokin");
 		m2multiverzum.setIsbn("978-86-7963-478-8");
+		m2multiverzum.setBookCount(6);
 		m2multiverzum.setPublisher(samizdat);
 		bookService.save(m2multiverzum);
 		
@@ -59,6 +61,7 @@ public class TestData {
 		noiseOfTime.setEdition(2017);
 		noiseOfTime.setWriter("Julian Barnes");
 		noiseOfTime.setIsbn("978-86-6145-221-5");
+		noiseOfTime.setBookCount(3);
 		noiseOfTime.setPublisher(geopolitika);
 		bookService.save(noiseOfTime);
 	}

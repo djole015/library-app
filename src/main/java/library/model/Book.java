@@ -28,6 +28,8 @@ public class Book {
 	@Column(nullable = false, unique = true)
 	private String isbn;
 	@Column
+	private Integer bookCount;
+	@Column
 	private Integer votesCount = 0;
 
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -73,6 +75,14 @@ public class Book {
 		this.isbn = isbn;
 	}
 
+	public Integer getBookCount() {
+		return bookCount;
+	}
+
+	public void setBookCount(Integer bookCount) {
+		this.bookCount = bookCount;
+	}
+
 	public Integer getVotesCount() {
 		return votesCount;
 	}
@@ -97,5 +107,5 @@ public class Book {
 		return "Book [id=" + id + ", title=" + title + ", edition=" + edition + ", writer=" + writer + ", isbn=" + isbn
 				+ ", votesCount=" + votesCount + ", publisher=" + publisher + "]";
 	}
-	
+
 }

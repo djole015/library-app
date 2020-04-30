@@ -17,6 +17,7 @@ public class BookDTO {
 	private String writer;
 	@Size(max = 18)
 	private String isbn;
+	private Integer bookCount;
 	private Integer votesCount = 0;
 
 	private Long publisherId;
@@ -56,6 +57,14 @@ public class BookDTO {
 
 	public String getIsbn() {
 		return isbn;
+	}
+
+	public Integer getBookCount() {
+		return bookCount;
+	}
+
+	public void setBookCount(Integer bookCount) {
+		this.bookCount = bookCount;
 	}
 
 	public void setIsbn(String isbn) {

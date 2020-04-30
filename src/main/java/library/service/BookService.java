@@ -17,7 +17,7 @@ public interface BookService {
 	Book delete(Long id);
 	
 	Book vote(Long id);
-
+	
 	Page<Book> search(String title, String writer, Integer minVotesCount, int pageNum);
 
 	List<Book> findByPublisherId(Long publisherId);

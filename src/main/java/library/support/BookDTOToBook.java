@@ -39,6 +39,7 @@ public class BookDTOToBook implements Converter<BookDTO, Book>{
 			book.setEdition(dto.getEdition());
 			book.setWriter(dto.getWriter());
 			book.setIsbn(dto.getIsbn());
+			book.setBookCount(dto.getBookCount());
 			book.setVotesCount(dto.getVotesCount());
 
 			book.setPublisher(publisher);

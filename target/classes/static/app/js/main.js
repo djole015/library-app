@@ -14,6 +14,7 @@ libraryApp.controller("booksCtrl", function($scope, $http, $location){
 	$scope.newBook.edition = "";
 	$scope.newBook.writer = "";
 	$scope.newBook.isbn = "";
+	$scope.newBook.bookCount = "";
 
 	$scope.newBook.publisherId = "";
 	
@@ -97,6 +98,7 @@ libraryApp.controller("booksCtrl", function($scope, $http, $location){
 				$scope.newBook.edition = "";
 				$scope.newBook.writer = "";
 				$scope.newBook.isbn = "";
+				$scope.newBook.bookCount = "";
 
 				$scope.newBook.publisherId = "";
 			},
@@ -160,6 +162,8 @@ libraryApp.controller("editBookCtrl", function($scope, $http, $routeParams, $loc
 	$scope.oldBook.title = "";
 	$scope.oldBook.edition = "";
 	$scope.oldBook.writer = "";
+	$scope.oldBook.isbn = "";
+	$scope.oldBook.bookCount = "";
 	$scope.oldBook.publisher = "";
 
 	$scope.oldBook.publisherId = "";
