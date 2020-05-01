@@ -11,4 +11,6 @@ public interface PublisherService {
 	Publisher save(Publisher publisher);
 
 	Publisher findOne(Long id);
+
+	void delete(Long id);
 }

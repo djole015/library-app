@@ -1,0 +1,46 @@
+<div ng-controller="publishersCtrl">
+
+	<form id="addPublisher">
+
+		<div class="form-group">
+			<label for="name">Name</label> <input id="name" class="form-control"
+				ng-model="newPublisher.name" />
+		</div>
+
+		<div class="form-group">
+			<label for="address">Address</label> <input id="address"
+				class="form-control" ng-model="newPublisher.address" />
+		</div>
+
+		<div class="form-group">
+			<label for="phone">Phone Number</label> <input id="phone"
+				class="form-control" ng-model="newPublisher.phone" />
+		</div>
+
+		<button class="btn btn-primary" ng-click="doAdd()">Add</button>
+
+	</form>
+
+	<table class="table table-bordered table-striped">
+		<thead class="thead-dark">
+			<tr>
+				<th>Publisher Name</th>
+				<th>Address</th>
+				<th>Phone</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="p in publishers">
+				<td>{{p.name}}</td>
+				<td>{{p.address}}</td>
+				<td>{{p.phone}}</td>
+				<td>
+					<button class="btn btn-danger" ng-click="doDelete(p.id)">Delete</button>
+					<button class="btn btn-warning" ng-click="goToEdit(p.id)">Edit</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+</div>

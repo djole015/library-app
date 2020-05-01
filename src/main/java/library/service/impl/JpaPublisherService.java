@@ -30,4 +30,9 @@ public class JpaPublisherService implements PublisherService{
 		return publisherRepository.findOne(id);
 	}
 
+	@Override
+	public void delete(Long id) {
+		publisherRepository.delete(id);;
+	}
+
 }

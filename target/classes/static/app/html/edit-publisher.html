@@ -1,0 +1,30 @@
+<div ng-controller="editPublisherCtrl">
+	
+	<div class="row">
+				
+		<div class="col-12 col-lg-5">
+		
+			<form>
+
+			<div class="form-group">
+				<label for="name">Name</label>
+				<input id="name" class="form-control" ng-model="oldPublisher.name"/>
+			</div>
+			
+			<div class="form-group">
+				<label for="address">Address</label>
+				<input id="address" class="form-control" ng-model="oldPublisher.address"/>
+			</div>
+			
+			<div class="form-group">
+				<label for="phone">Phone Number</label>
+				<input id="phone" class="form-control" ng-model="oldPublisher.phone"/>
+			</div>
+			
+			<button class="btn btn-primary" ng-click="doEdit()">Change</button>
+			
+			</form>
+		
+		</div>
+	</div>
+</div>

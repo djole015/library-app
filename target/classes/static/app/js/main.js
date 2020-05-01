@@ -157,6 +157,12 @@ libraryApp.controller("booksCtrl", function($scope, $http, $location){
 		$scope.searchParams.minVotesCount = "";
 	}
 	
+	$scope.doFastSearch = function(){
+		$scope.searchParams.minVotesCount = 5;
+		$scope.pageNum = 0;
+		getBooks();
+	}
+	
 	$scope.changePage = function(direction){
 		$scope.pageNum = $scope.pageNum + direction;
 		getBooks();
@@ -218,6 +224,97 @@ libraryApp.controller("editBookCtrl", function($scope, $http, $routeParams, $loc
 	}
 });
 
+libraryApp.controller("publishersCtrl", function($scope, $http, $location){
+	
+	$scope.publishers = [];
+
+	$scope.newPublisher = {};
+	$scope.newPublisher.name = "";
+	$scope.newPublisher.address = "";
+	$scope.newPublisher.phone = "";
+	
+	var publishersUrl = "/api/publishers";
+	
+	var getPublishers = function(){
+		$http.get(publishersUrl).then(
+			function success(res){
+				$scope.publishers = res.data;
+			},
+			function error(){
+				alert("Failure getting publishers.");
+			}
+		);
+	}
+	
+	getPublishers();
+	
+	$scope.doAdd = function(){
+		
+		$http.post(publishersUrl, $scope.newPublisher).then(
+			function success(){
+				getPublishers();
+				
+				$scope.newPublisher.name = "";
+				$scope.newPublisher.address = "";
+				$scope.newPublisher.phone = "";
+
+			},
+			function error(){
+				alert("Failed to save publishers!");
+			}
+		);
+	}
+	
+	$scope.doDelete = function(id){
+		$http.delete(publishersUrl + "/" + id).then(
+			function success(){
+				getPublishers();
+			},
+			function error(){
+				alert("Failed to delete the book.");
+			}
+		);
+	}
+	
+	$scope.goToEdit = function(id){
+		$location.path("/publishers/edit/" + id);
+	}
+	
+});
+
+libraryApp.controller("editPublisherCtrl", function($scope, $http, $routeParams, $location){
+	
+	var oldPublisherUrl = "/api/publishers/" + $routeParams.id;
+
+	$scope.oldPublisher = {};
+	$scope.oldPublisher.name = "";
+	$scope.oldPublisher.address = "";
+	$scope.oldPublisher.phone = "";
+	
+	var getPublisher = function(){
+		$http.get(oldPublisherUrl).then(
+			function success(res){
+				$scope.oldPublisher = res.data;
+			},
+			function error(){
+				alert("Failure getting publisher.");
+			}
+		);
+	}
+	
+	getPublisher();
+
+	$scope.doEdit = function(){
+		$http.put(oldPublisherUrl, $scope.oldPublisher).then(
+			function success(){
+				$location.path("/publishers");
+			},
+			function error(){
+				alert("Failed to save the publisher.");
+			}
+		);
+	}
+});
 
 libraryApp.config(['$routeProvider', function($routeProvider) {
 	$routeProvider
@@ -230,6 +327,12 @@ libraryApp.config(['$routeProvider', function($routeProvider) {
 		})
 		.when('/books/edit/:id', {
 			templateUrl : '/app/html/edit-book.html'
+		})
+		.when('/publishers', {
+			templateUrl : '/app/html/publishers.html'
+		})
+		.when('/publishers/edit/:id', {
+			templateUrl : '/app/html/edit-publisher.html'
 		})
 		.otherwise({
 			redirectTo: '/'
