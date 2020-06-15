@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Implementation-Title: knjizara_dj Maven Webapp
+Implementation-Title: library Maven Webapp
 Implementation-Version: 0.0.1-SNAPSHOT
 Built-By: E6530
 Implementation-Vendor-Id: org.springframework.boot

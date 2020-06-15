@@ -57,7 +57,7 @@ libraryApp.controller("booksCtrl", function($scope, $http, $location){
 				
 			},
 			function error(){
-				alert("Failure getting books.");
+				alert("Fetching books failed.");
 			}
 		);
 	}
@@ -68,7 +68,7 @@ libraryApp.controller("booksCtrl", function($scope, $http, $location){
 				$scope.publishers = res.data;
 			},
 			function error(){
-				alert("Failure getting publishers.");
+				alert("Fetching publishers failed");
 			}
 		);
 	}

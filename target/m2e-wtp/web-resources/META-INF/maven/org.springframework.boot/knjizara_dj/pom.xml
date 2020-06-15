@@ -10,7 +10,7 @@
   <artifactId>knjizara_dj</artifactId>
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
-  <name>knjizara_dj Maven Webapp</name>
+  <name>library Maven Webapp</name>
   <properties>
 		<main.basedir>${basedir}/../..</main.basedir>
 		<m2eclipse.wtp.contextRoot>/</m2eclipse.wtp.contextRoot>
